@@ -86,7 +86,7 @@ bool ControlInterface::RecieveOdoAngles()
 void ControlInterface::Run()
 {
     uint8_t receivedCommand;
-    protocol.readCommand(receivedCommand);
+    protocol.readCommand(receivedCommand, 0);
 
     switch (receivedCommand)
     {
