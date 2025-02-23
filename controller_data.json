@@ -1,0 +1,43 @@
+{
+    "controllerProperties": {
+        "run": false,
+        "numMotors": 2,
+        "odoBroadcastStatus": {
+            "angleBroadcast": false,
+            "speedBroadcast": false,
+            "pwmBroadcast": false
+        },
+        "odoBroadcastFrequency": 30,
+        "updateFrequencies": {
+            "interfaceRun": 50
+        }
+    },
+    "motorData": [
+        {
+            "motorID": 0,
+            "controlMode": 2,
+            "anglePIDConstants": { "p": 0, "i": 0, "d": 0 },
+            "speedPIDConstants": { "p": 0, "i": 0, "d": 0 },
+            "pwmLimits": { "minPWM": 0, "maxPWM": 0 },
+            "motorConnections": { "dirPin": 38, "pwmPin": 39, "encPinA": 9, "encPinB": 10 },
+            "odometryData": { "angle": 0, "rpm": 0 },
+            "setpoint": { "angle": 0, "rpm": 0 },
+            "odoBroadcastStatus": { "angleBroadcast": false, "speedBroadcast": false, "pwmBroadcast": false },
+            "updateFrequenciesWheel": { "pwm": 50, "anglePID": 30, "speedPID": 30 },
+            "pwmValue": 0
+        },
+        {
+            "motorID": 1,
+            "controlMode": 2,
+            "anglePIDConstants": { "p": 0, "i": 0, "d": 0 },
+            "speedPIDConstants": { "p": 0, "i": 0, "d": 0 },
+            "pwmLimits": { "minPWM": 0, "maxPWM": 0 },
+            "motorConnections": { "dirPin": 36, "pwmPin": 37, "encPinA": 21, "encPinB": 47 },
+            "odometryData": { "angle": 0, "rpm": 0 },
+            "setpoint": { "angle": 0, "rpm": 0 },
+            "odoBroadcastStatus": { "angleBroadcast": false, "speedBroadcast": false, "pwmBroadcast": false },
+            "updateFrequenciesWheel": { "pwm": 50, "anglePID": 30, "speedPID": 30 },
+            "pwmValue": 0
+        }
+    ]
+}
