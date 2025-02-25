@@ -116,11 +116,11 @@ public:
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("int_array_topic", 10);
+        publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("odometry_array_topic", 10);
         pub_timer_ = this->create_wall_timer(std::chrono::milliseconds(20), std::bind(&MyNode::publish_data, this));
 
         subscription_ = this->create_subscription<std_msgs::msg::Int16MultiArray>(
-            "int_array_topic", 10, std::bind(&MyNode::listener_callback, this, std::placeholders::_1));
+            "pwm_array_topic", 10, std::bind(&MyNode::listener_callback, this, std::placeholders::_1));
 
         service_ = this->create_service<std_srvs::srv::SetBool>(
             "bool_service", std::bind(&MyNode::handle_service, this, std::placeholders::_1, std::placeholders::_2));
