@@ -1,5 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int16_multi_array.hpp"
+#include "std_msgs/msg/int32_multi_array.hpp"
 #include "std_srvs/srv/set_bool.hpp"
 
 #include "Structs.hpp"
@@ -16,7 +17,7 @@ private:
 
     void publish_data()
     {
-        auto msg = std_msgs::msg::Int16MultiArray();
+        auto msg = std_msgs::msg::Int32MultiArray();
         msg.data = {controllerData.motorData[0].odometryData.angle, controllerData.motorData[1].odometryData.angle};
         publisher_->publish(msg);
         RCLCPP_INFO(this->get_logger(), "Published: [%d, %d]", controllerData.motorData[0].odometryData.angle, controllerData.motorData[1].odometryData.angle);
@@ -44,7 +45,7 @@ private:
         RCLCPP_INFO(this->get_logger(), "ControlInterface Run() executed.");
     }
 
-    rclcpp::Publisher<std_msgs::msg::Int16MultiArray>::SharedPtr publisher_;
+    rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr publisher_;
     rclcpp::Subscription<std_msgs::msg::Int16MultiArray>::SharedPtr subscription_;
     rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr service_;
     rclcpp::TimerBase::SharedPtr pub_timer_;
@@ -115,7 +116,7 @@ public:
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        publisher_ = this->create_publisher<std_msgs::msg::Int16MultiArray>("int_array_topic", 10);
+        publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("int_array_topic", 10);
         pub_timer_ = this->create_wall_timer(std::chrono::milliseconds(20), std::bind(&MyNode::publish_data, this));
 
         subscription_ = this->create_subscription<std_msgs::msg::Int16MultiArray>(
