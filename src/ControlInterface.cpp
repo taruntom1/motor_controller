@@ -56,7 +56,7 @@ void ControlInterface::SetMotorPWMs()
     protocol.sendCommand(SET_MOTOR_PWMS);
     for (uint8_t i = 0; i < controllerData.controllerProperties.numMotors; i++)
     {
-        protocol.sendData((uint8_t *)&controllerData.motorData[i].pwmValue, sizeof(int16_t));
+        protocol.sendData((uint8_t *)&controllerData.motorData[i].pwmValue, sizeof(int));
     }
 }
 

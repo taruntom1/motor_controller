@@ -23,7 +23,7 @@ private:
         RCLCPP_INFO(this->get_logger(), "Published: [%d, %d]", controllerData.motorData[0].odometryData.angle, controllerData.motorData[1].odometryData.angle);
     }
 
-    void listener_callback(const std_msgs::msg::Int16MultiArray::SharedPtr msg)
+    void listener_callback(const std_msgs::msg::Int32MultiArray::SharedPtr msg)
     {
         controllerData.motorData[0].pwmValue = msg->data[0];
         controllerData.motorData[1].pwmValue = msg->data[1];
@@ -46,7 +46,7 @@ private:
     }
 
     rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr publisher_;
-    rclcpp::Subscription<std_msgs::msg::Int16MultiArray>::SharedPtr subscription_;
+    rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr subscription_;
     rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr service_;
     rclcpp::TimerBase::SharedPtr pub_timer_;
     rclcpp::TimerBase::SharedPtr control_timer_;
@@ -119,7 +119,7 @@ public:
         publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("odometry_array_topic", 10);
         pub_timer_ = this->create_wall_timer(std::chrono::milliseconds(20), std::bind(&MyNode::publish_data, this));
 
-        subscription_ = this->create_subscription<std_msgs::msg::Int16MultiArray>(
+        subscription_ = this->create_subscription<std_msgs::msg::Int32MultiArray>(
             "pwm_array_topic", 10, std::bind(&MyNode::listener_callback, this, std::placeholders::_1));
 
         service_ = this->create_service<std_srvs::srv::SetBool>(

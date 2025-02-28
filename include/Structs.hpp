@@ -121,7 +121,7 @@ struct MotorData
     Setpoint setpoint;                             ///< Desired setpoints.
     OdoBroadcastStatus odoBroadcastStatus;         ///< Status of odometry broadcasting.
     UpdateFrequenciesWheel updateFrequenciesWheel; ///< Different update frequencies for wheel control.
-    int16_t pwmValue = 0;                         ///< Current PWM value.
+    int pwmValue = 0;                         ///< Current PWM value.
 };
 
 /**
