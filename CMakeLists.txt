@@ -10,6 +10,10 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 # Include directories
 include_directories(
@@ -29,7 +33,16 @@ set(SOURCE_FILES
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Link dependencies
-ament_target_dependencies(${PROJECT_NAME} rclcpp std_msgs std_srvs)
+ament_target_dependencies(${PROJECT_NAME}
+    rclcpp
+    std_msgs 
+    std_srvs 
+    nav_msgs 
+    geometry_msgs 
+    tf2 
+    tf2_ros
+)
+
 
 # Install targets
 install(TARGETS
