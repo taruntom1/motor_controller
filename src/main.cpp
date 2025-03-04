@@ -102,7 +102,7 @@ private:
 
     void setup_controller()
     {
-        loadControllerDataFromJson("/home/tarun/ros2_ws/src/motor_controller/controller_data.json", controllerData);
+        loadControllerDataFromJson("/home/tarun/ros2_ws/src/motor_controller/controller_data.json", controllerData, get_logger());
 
         for (int i = 0; i < 10; i++)
         {
