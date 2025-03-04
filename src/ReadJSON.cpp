@@ -80,16 +80,32 @@ void from_json(const json& j, ControllerData& c) {
     j.at("controllerProperties").get_to(c.controllerProperties);
 }
 
-bool loadControllerDataFromJson(const std::string& filename, ControllerData& data) {
+
+
+bool loadControllerDataFromJson(const std::string& filename, ControllerData& data, rclcpp::Logger logger) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Failed to open JSON file: " << filename << std::endl;
+        RCLCPP_ERROR(logger, "Failed to open JSON file: %s", filename.c_str());
         return false;
     }
+    
     json j;
-    file >> j;
+    try {
+        file >> j; // Parse JSON file
+    } catch (const json::parse_error& e) {
+        RCLCPP_ERROR(logger, "JSON parsing error in file %s: %s", filename.c_str(), e.what());
+        return false;
+    }
+    
     file.close();
     
-    j.get_to(data);
+    try {
+        j.get_to(data); // Convert JSON to ControllerData
+    } catch (const json::exception& e) {
+        RCLCPP_ERROR(logger, "Error converting JSON to ControllerData: %s", e.what());
+        return false;
+    }
+    
+    RCLCPP_INFO(logger, "Successfully loaded controller data from: %s", filename.c_str());
     return true;
 }
