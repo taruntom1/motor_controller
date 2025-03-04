@@ -4,6 +4,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include "Structs.hpp"
+#include <rclcpp/rclcpp.hpp>
 
 using json = nlohmann::json;
 
